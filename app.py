@@ -200,8 +200,12 @@ def refresh_access_token(refresh_token: str) -> dict:
 
 def handle_oauth_callback():
     if st.query_params.get("error"):
-       st.error(f"QBO error: {st.query_params.get('error')} — {st.query_params.get('error_description')}")if st.query_params.get("error"):
-       st.error(f"QBO error: {st.query_params.get('error')} — {st.query_params.get('error_description')}")
+        st.write("Redirect URI:", REDIRECT_URI)
+        st.error(
+            f"QBO error: {st.query_params.get('error')} — "
+            f"{st.query_params.get('error_description')}"
+        )
+
     params = st.query_params
     code = params.get("code")
     realm_id = params.get("realmId") or COMPANY_ID_OVERRIDE
